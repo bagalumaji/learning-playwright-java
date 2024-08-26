@@ -29,4 +29,10 @@ public class CheckBoxAndRadioButtonTests {
             browser.close();
         }
     }
+    @Test
+    void radioButtonTest() {
+        try(Playwright playwright=Playwright.create()){
+            
+        }
+    }
 }
