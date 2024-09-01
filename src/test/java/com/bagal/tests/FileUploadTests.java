@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 
 public class FileUploadTests {
     @Test
-    public void testFileUpload() {
+    void testFileWithoutTypeFileUpload() {
         try (Playwright playwright = Playwright.create()) {
             Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setChannel("chrome"));
             BrowserContext browserContext = browser.newContext();
@@ -22,6 +22,20 @@ public class FileUploadTests {
 
             page.close();
             browserContext.close();
+            browser.close();
+        }
+    }
+    @Test
+    void fileUploadWithTypeFileTest() {
+        try(Playwright playwright = Playwright.create()){
+            Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setChannel("chrome"));
+            BrowserContext context = browser.newContext();
+            Page page = context.newPage();
+            page.navigate("https://the-internet.herokuapp.com/upload");
+            page.locator("id=file-upload").setInputFiles(Paths.get(System.getProperty("user.dir")+ File.separator+"src/test/resources/testdata/test.txt"));
+            page.waitForTimeout(2000);
+            page.close();
+            context.close();
             browser.close();
         }
     }
