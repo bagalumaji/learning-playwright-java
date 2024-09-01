@@ -25,4 +25,9 @@ public final class MouseActionTests {
             throw new RuntimeException(e);
         }
     }
+    @Test
+    void mouseHoverTest(){
+
+    }
+    
 }
